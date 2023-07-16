@@ -5,3 +5,40 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  flex-shrink: 0;
+  background-color: aquamarine;
+  width: 330px;
+  height: 470px;
+  display: grid;
+  grid-template-rows: 3fr 7fr;
+  row-gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+#buttons {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#clear-button,#delete-button {
+  grid-column: span 2;
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.774);
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 2rem;
+}
