@@ -50,10 +50,8 @@ function operate() {
       return multiply(operand1, operand2);
   
     case '/':
-      return divide(operand1, operand2);
-  
-    default:
-      break;
+      let temp = divide(operand1, operand2).toFixed(2);
+      return Number.isSafeInteger(+temp) ? temp.slice(0, -3) : temp; 
   }
 }
 
