@@ -84,8 +84,7 @@ function addDigit() {
     updateCurrentDisplay(operand1);
   } else {
     operand2 += this.textContent;
-    currentExpression.textContent += operand2;
-    // updatePrevDisplay();
+    currentExpression.textContent += this.textContent;
   }
 }
 
