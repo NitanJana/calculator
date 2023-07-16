@@ -36,7 +36,9 @@ function divide(operand1, operand2) {
   
   
 
-function operate(operator, operand1, operand2) {
+function operate() {
+  operand1 = +operand1;
+  operand2 = +operand2;
   switch (operator) {
     case '+':
       return add(operand1, operand2);
@@ -55,16 +57,30 @@ function operate(operator, operand1, operand2) {
   }
 }
 
-
-
 function updateDisplay() {
-  currentExpression.textContent = operand1;
+  if (operand2 !== '') {
+    result = operate();
+    currentExpression.textContent = result;
+    updateCurrentDisplay(result);
+    updatePrevDisplay();
+    operand1 = result;
+    operand2 = '';
+  }
+}
+
+
+function updateCurrentDisplay(value) {
+  currentExpression.textContent = value;
+}
+
+function updatePrevDisplay() {
+  prevExpression.textContent = `${operand1} ${operator} ${operand2} = ${result}`;
 }
 
 function addDigit() {
   if (operator === '') {
     operand1 += this.textContent;
-    updateDisplay();
+    updateCurrentDisplay(operand1);
   } else {
     operand2 += this.textContent;
     currentExpression.textContent += operand2;
@@ -72,16 +88,12 @@ function addDigit() {
 }
 
 function addOperator() {
+  updateDisplay();
   operator = this.textContent;
   currentExpression.textContent += operator;
 
 }
 
 function handleEqualButton() {
-  result = operate(operator, operand1, operand2);
-  currentExpression.textContent = result;
-  prevExpression.textContent = `${operand1} ${operator} ${operand2} = ${result}`;
-  operand1 = result;
-  operand2 = '';
-
+  updateDisplay();
 }
