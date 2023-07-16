@@ -1,8 +1,10 @@
 const prevExpression = document.querySelector('#prev-expression');
 const currentExpression = document.querySelector('#current-expression');
 const equalButton = document.querySelector('#equal-button');
+const clearButton = document.querySelector('#clear-button');
 
 equalButton.addEventListener('click', handleEqualButton);
+clearButton.addEventListener('click', handleClearButton);
 
 const digitButtons = Array.from(document.querySelectorAll('.button-digit'));
 digitButtons.forEach(item => item.addEventListener('click', addDigit));
@@ -108,4 +110,13 @@ function handleEqualButton() {
   updateDisplay();
   operator = '';
   isEqualButtonPressed = true;
+}
+
+function handleClearButton() {
+  currentExpression.textContent = '';
+  prevExpression.textContent = '';
+  operator = '';
+  operand1 = '';
+  operand2 = '';
+  result = '';
 }
