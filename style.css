@@ -26,6 +26,26 @@ main {
   border-radius: 1rem;
 }
 
+#display {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+#prev-expression {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+#current-expression {
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
 #buttons {
   display: grid;
   grid-gap: 0.5rem;
