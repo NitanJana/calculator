@@ -50,6 +50,9 @@ function operate() {
       return multiply(operand1, operand2);
   
     case '/':
+      if (operand2 === 0) {
+        alert('Error: divide by zero');
+      }
       let temp = divide(operand1, operand2).toFixed(2);
       return Number.isSafeInteger(+temp) ? temp.slice(0, -3) : temp; 
   }
@@ -82,6 +85,7 @@ function addDigit() {
   } else {
     operand2 += this.textContent;
     currentExpression.textContent += operand2;
+    // updatePrevDisplay();
   }
 }
 
