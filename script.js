@@ -15,7 +15,8 @@ operatorButtons.forEach(item => item.addEventListener('click', addOperator));
 let operator = ''
   , operand1 = ''
   , operand2 = ''
-  , result;
+  , result
+  , isEqualButtonPressed = false;
 
 
 function add(operand1, operand2) {
@@ -79,9 +80,17 @@ function updatePrevDisplay() {
 }
 
 function addDigit() {
+  
   if (operator === '') {
-    operand1 += this.textContent;
-    updateCurrentDisplay(operand1);
+    if (isEqualButtonPressed) {
+      operand1 = this.textContent;
+      isEqualButtonPressed = false;
+      updateCurrentDisplay(operand1);
+    } else {
+      operand1 += this.textContent;
+      updateCurrentDisplay(operand1);
+
+    }
   } else {
     operand2 += this.textContent;
     currentExpression.textContent += this.textContent;
@@ -97,4 +106,6 @@ function addOperator() {
 
 function handleEqualButton() {
   updateDisplay();
+  operator = '';
+  isEqualButtonPressed = true;
 }
