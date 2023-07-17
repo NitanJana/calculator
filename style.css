@@ -1,3 +1,10 @@
+:root {
+  --main-color : #9ceff3;
+  --secondary-color: #e2fdff;
+  --alternate-color : #1a725f9a;
+  --accent-color: #1a725f;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap");
 
 *,
@@ -18,18 +25,19 @@ body {
 
 main {
   flex-shrink: 0;
-  background-color: aquamarine;
+  background-color: var(--main-color);
   width: 330px;
   height: 470px;
   display: grid;
-  grid-template-rows: 3fr 7fr;
+  grid-template-rows: 3.5fr 7fr;
   row-gap: 1rem;
   padding: 1rem;
   border-radius: 1rem;
 }
 
 #display {
-  background-color: #ffffff;
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
   border-radius: 1rem;
   display: flex;
   align-items: flex-end;
@@ -54,13 +62,18 @@ main {
   grid-template-columns: repeat(4, 1fr);
 }
 
-#clear-button,#delete-button {
-  grid-column: span 2;
-}
 
 .button {
-  background-color: rgba(255, 255, 255, 0.774);
-  font-size: 1.1rem;
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+  font-size: 1.3rem;
   border: none;
   border-radius: 2rem;
+}
+
+#clear-button,#delete-button {
+  grid-column: span 2;
+  font-size: 1.1rem;
+  background-color: var(--alternate-color);
+  color: var(--secondary-color);
 }
