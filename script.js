@@ -2,9 +2,11 @@ const prevExpression = document.querySelector('#prev-expression');
 const currentExpression = document.querySelector('#current-expression');
 const equalButton = document.querySelector('#equal-button');
 const clearButton = document.querySelector('#clear-button');
+const pointButton = document.querySelector('#point-button');
 
 equalButton.addEventListener('click', handleEqualButton);
 clearButton.addEventListener('click', handleClearButton);
+pointButton.addEventListener('click', handlePointButton);
 
 const digitButtons = Array.from(document.querySelectorAll('.button-digit'));
 digitButtons.forEach(item => item.addEventListener('click', addDigit));
@@ -42,22 +44,27 @@ function divide(operand1, operand2) {
 function operate() {
   operand1 = +operand1;
   operand2 = +operand2;
+  let res;
   switch (operator) {
     case '+':
-      return add(operand1, operand2);
+      res = add(operand1, operand2).toFixed(2);
+      return Number.isSafeInteger(+res) ? res.slice(0, -3) : res; 
   
     case '-':
-      return subtract(operand1, operand2);
+      res = subtract(operand1, operand2).toFixed(2);
+      return Number.isSafeInteger(+res) ? res.slice(0, -3) : res; 
   
     case '*':
-      return multiply(operand1, operand2);
+      res = multiply(operand1, operand2).toFixed(2);
+      return Number.isSafeInteger(+res) ? res.slice(0, -3) : res; 
+      
   
     case '/':
       if (operand2 === 0) {
         alert('Error: divide by zero');
       }
-      let temp = divide(operand1, operand2).toFixed(2);
-      return Number.isSafeInteger(+temp) ? temp.slice(0, -3) : temp; 
+      res = divide(operand1, operand2).toFixed(2);
+      return Number.isSafeInteger(+res) ? res.slice(0, -3) : res; 
   }
 }
 
@@ -82,7 +89,6 @@ function updatePrevDisplay() {
 }
 
 function addDigit() {
-  
   if (operator === '') {
     if (isEqualButtonPressed) {
       operand1 = this.textContent;
@@ -91,7 +97,6 @@ function addDigit() {
     } else {
       operand1 += this.textContent;
       updateCurrentDisplay(operand1);
-
     }
   } else {
     operand2 += this.textContent;
@@ -103,7 +108,16 @@ function addOperator() {
   updateDisplay();
   operator = this.textContent;
   currentExpression.textContent += operator;
+}
 
+function handlePointButton() {
+  if (operator === '' && !operand1.includes('.')) {
+      operand1 += this.textContent;
+      updateCurrentDisplay(operand1);
+  } else if(operator !== '' && !operand2.includes('.')){
+    operand2 += this.textContent;
+    currentExpression.textContent += this.textContent;
+  }
 }
 
 function handleEqualButton() {
