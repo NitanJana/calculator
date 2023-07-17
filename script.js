@@ -105,9 +105,12 @@ function addDigit() {
 }
 
 function addOperator() {
-  updateDisplay();
-  operator = this.textContent;
-  currentExpression.textContent += operator;
+  if (currentExpression.textContent !== '' && !currentExpression.textContent.slice(-1).match(/[+/*-]/)) {
+    
+    updateDisplay();
+    operator = this.textContent;
+    currentExpression.textContent += operator;
+  }
 }
 
 function handlePointButton() {
@@ -121,9 +124,11 @@ function handlePointButton() {
 }
 
 function handleEqualButton() {
-  updateDisplay();
-  operator = '';
-  isEqualButtonPressed = true;
+  if (currentExpression.textContent !== '' && !currentExpression.textContent.slice(-1).match(/[+/*-]/)) {
+    updateDisplay();
+    operator = '';
+    isEqualButtonPressed = true;
+  }
 }
 
 function handleClearButton() {
