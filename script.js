@@ -3,10 +3,12 @@ const currentExpression = document.querySelector('#current-expression');
 const equalButton = document.querySelector('#equal-button');
 const clearButton = document.querySelector('#clear-button');
 const pointButton = document.querySelector('#point-button');
+const deleteButton = document.querySelector('#delete-button');
 
 equalButton.addEventListener('click', handleEqualButton);
 clearButton.addEventListener('click', handleClearButton);
 pointButton.addEventListener('click', handlePointButton);
+deleteButton.addEventListener('click', handleDeleteButton);
 
 const digitButtons = Array.from(document.querySelectorAll('.button-digit'));
 digitButtons.forEach(item => item.addEventListener('click', addDigit));
@@ -138,4 +140,29 @@ function handleClearButton() {
   operand1 = '';
   operand2 = '';
   result = '';
+}
+
+function handleDeleteButton() {
+  let del = currentExpression.textContent.slice(-1);
+  if (del === '') return;
+  
+  else if (del.match(/[0-9]/)) {
+    if (operand2 === '') {
+      operand1 = operand1.slice(0, -1);
+
+    } else {
+      operand2 = operand2.slice(0, -1);
+    }
+  }
+  else if (del.match(/[+/*-]/)) {
+    operator = '';
+  }
+  else if (del.match(/[.]/)) {
+    if (operand2 === '') {
+      operand1 = operand1.slice(0, -1);
+    } else {
+      operand2 = operand2.slice(0, -1);
+    }
+  }
+  currentExpression.textContent = currentExpression.textContent.slice(0,-1);
 }
