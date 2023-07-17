@@ -19,6 +19,8 @@ body {
   font-family: "Open Sans", sans-serif;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 }
@@ -26,7 +28,7 @@ body {
 main {
   flex-shrink: 0;
   background-color: var(--main-color);
-  width: 330px;
+  width: 320px;
   height: 470px;
   display: grid;
   grid-template-rows: 3.5fr 7fr;
@@ -76,4 +78,16 @@ main {
   font-size: 1.1rem;
   background-color: var(--alternate-color);
   color: var(--secondary-color);
+}
+
+.footer {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  margin-left: 10px;
+  height: 30px;
+  aspect-ratio: 1;
 }
